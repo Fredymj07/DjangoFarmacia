@@ -1,0 +1,51 @@
+{% load static %}
+{% load bootstrap %}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'webfarmacia:indexFarmacia' %}">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <img src="{% static 'img/farmacia.png' %}" alt="" width="50" height="50"/>
+      <strong>FreLor Farmacia</strong>
+    </a>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+          <!-- Opciones del menú -->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Productos
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Listado de Productos</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Clientes
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'cliente:listaCliente' %}">Listado de Clientes</a>
+                <a class="dropdown-item" href="#">Another action</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Empleados
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Listado de Empleados</a>
+              <a class="dropdown-item" href="#">Another action</a>
+          </li>          
+      </ul>
+          <a class="navbar-brand" href="{% url 'account:profile' %}">
+            {{ user.username }}
+          </a>
+          <a href="{% url 'logout' %}" class="btn btn-outline-primary btn-sm my-2 my-sm-0 float-left">Cerrar Sesión</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-outline-primary btn-sm my-2 my-sm-0 float-left">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+  </div>
+</nav>

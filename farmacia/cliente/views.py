@@ -1,16 +1,19 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import AgregarClienteForm, ActualizarClienteForm
 from django.contrib import messages
 from .models import Cliente
 
 # Create your views here.
 """ Este método permite visualizar el listado de Clientes """
+@login_required
 def lista(request):
     listaClientes = Cliente.objects.order_by('id')
     
     return render(request, 'lista.html', {'listaClientes':listaClientes})
 
 """ Este método permite agregar nuevos Clientes """
+@login_required
 def agregar(request):
     if request.method=='POST':
         formCliente = AgregarClienteForm(request.POST)

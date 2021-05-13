@@ -1,0 +1,41 @@
+{% extends "base_user_authentication.html" %}
+{% load bootstrap %}
+
+{% block content %}
+
+    {# Mensajes que se muestran si el usuario está o no logueado en la aplicación #}
+    {% if  user.is_authenticated %}
+        {% include "partials/alert.html" with msj="Autenticado correctamente." tag="success" %}
+    {%else%}
+        {% include "partials/alert.html" with msj="No estás autenticado." tag="warning" %}
+    {% endif %}
+
+    {# Mensaje donde se indican credenciales incorrectas #}
+    {% if form.errors %}
+        {% include "partials/alert.html" with msj="Usuario y/o contraseña incorrectas. Por favor intenta nuevamente." tag="danger" %}
+    {% endif %}
+
+    {# Formulario  #}
+    <form class="login100-form validate-form mt-4" method="post" action="{% url 'account:user_register' %}">
+        {% csrf_token %}
+
+        <div class="row mt-4">
+            <div class="col-md-4 offset-md-4">
+                <div class="wrap-input100 validate-input">
+                    {{ userRegistrationForm|bootstrap }}
+                </div>               
+            </div>
+        </div>
+
+        <div class="container-login100-form-btn">
+            <button class="btn btn-outline-primary float-right">
+                Registrarse
+            </button>
+        </div>            
+    </form>
+
+    <div class="container-login100-form-btn">
+        <a href="{% url 'login' %}" class="btn btn-outline-primary my-2 my-sm-0 float-left">Regresar Login</a>
+    </div>
+
+{% endblock content %}

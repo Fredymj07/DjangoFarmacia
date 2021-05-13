@@ -1,31 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% load static %} 
-    {% load bootstrap %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{% static 'img/farmacia.png' %}" type="image/x-icon" />    
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
-    <title>FreLor Farmacia</title>   
-  </head>
-  
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'webfarmacia:indexFarmacia' %}">
-                <img src="{% static 'img/farmacia.png' %}" alt="" width="50" height="50">
-                <strong>FreLor Farmacia</strong>
-            </a>
+{% extends "base_principal.html" %}
+{% load static %}
+{% load bootstrap %}
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item ml-5">
-                        <a class="nav-link active" aria-current="page" href="{% url 'cliente:listaCliente' %}">Clientes</a>
-                    </li>
-                </ul>          
-            </div>
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1 class="gallery-title">Categorías</h1>
         </div>
-    </nav>    
-  </body>
-</html>
+
+        <div class="container">
+            <button class="btn btn-default filter-button" data-filter="all">Todas</button>
+            <button class="btn btn-default filter-button" data-filter="medicamentos">Medicamentos</button>
+            <button class="btn btn-default filter-button" data-filter="bebes">Cuidado del Bebé</button>
+            <button class="btn btn-default filter-button" data-filter="belleza">Belleza</button>
+            <button class="btn btn-default filter-button" data-filter="personal">Ciudado Personal</button>
+        </div>
+        <br/>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter medicamentos">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter bebes">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter medicamentos">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter personal">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter belleza">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter personal">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter belleza">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter personal">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter personal">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter medicamentos">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter belleza">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+
+        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter bebes">
+            <img src="http://fakeimg.pl/365x365/" class="img-responsive">
+        </div>
+    </div>
+</div>
+{% endblock content %}

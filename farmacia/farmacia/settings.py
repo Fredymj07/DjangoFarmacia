@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account', # Esta es la aplicación correspondiente al módulo de autenticación y cuentas de usuario 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrapform', # Este componente permite utilizar Bootstrap en los formularios que se utilicen dentro de la aplicación.
+    'bootstrapform', # Este componente permite utilizar Bootstrap en los formularios que se utilicen dentro de la aplicación.    
     'webfarmacia',
     'cliente',
 ]
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -129,3 +132,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configuración para la URL donde será direccionado el usuario luego de hacer Login en la aplicación
+LOGIN_REDIRECT_URL = '/webfarmacia/'
+
+# Configuración para la URL donde será direccionado el usuario luego de hacer Logout en la aplicación
+# LOGOUT_REDIRECT_URL = '/accounts/login'
+LOGOUT_REDIRECT_URL = '/webfarmacia/'
+
+# Configuración para el envío de correos. Recuperación de contraseña
+# La pplataforma de envío de correos utilizada es Mailtrap y las credenciales de acceso a dcicha plataforma son las siguientes:
+# Usuario: fredy.montanaa@cun.edu.co
+# Contraseña: FredY2709**
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '5a3921708c5ef5'
+EMAIL_HOST_PASSWORD = 'cf8152207006d4'
+EMAIL_PORT = '2525'
+
+# Configuración de la URL relativa para guardar los archivos cargados desde la aplicación
+MEDIA_ROOT = os.path.join(BASE_DIR, 'user')
+MEDIA_URL = '/user/'

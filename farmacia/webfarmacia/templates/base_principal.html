@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    {% comment %} {% load bootstrap %} {% endcomment %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{% static 'img/farmacia.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/centrado_categorias.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/galeria_categorias.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
+    <title>FreLor Farmacia</title>   
+  </head>
+  
+  <body>
+    {% include "partials/header_principal.html" %}
+
+    <div class="container my-4">
+        {% block content %}    
+    
+        {% endblock content %} 
+    </div>
+
+    {% include "partials/footer.html" %}
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/galeria_categorias.js' %}"></script>
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+  </body>
+</html>

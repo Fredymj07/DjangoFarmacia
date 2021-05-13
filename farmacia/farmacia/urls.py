@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
+    
+    # Autenticación de usuarios
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    # Autenticación de usuarios
+    path('accounts/', include('account.urls')),
     
     # Página Principal Farmacia
     path('webfarmacia/', include('webfarmacia.urls')),
@@ -26,3 +34,6 @@ urlpatterns = [
     # Cliente
     path('cliente/', include('cliente.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    

@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %} 
-    {% load bootstrap %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{% static 'img/farmacia.png' %}" type="image/x-icon" />    
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
-    <title>LorFre Farmacia</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'cliente:listaCliente' %}">
-                <img src="{% static 'img/customer.png' %}" alt="" width="50" height="50">
-                <strong>Listado de Clientes</strong>
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item ml-5">
-                        <a class="nav-link active" aria-current="page" href="{% url 'cliente:agregarCliente' %}">Agregar</a>
-                    </li>
-                </ul>          
-            </div>
-        </div>
-    </nav>
+{% extends 'partials_cliente/base_cliente.html' %}
+{% load static %}
 
     {% if  messages %}            
         {% for message in messages %}
@@ -34,10 +7,10 @@
         {% endfor %}            
     {% endif %}
 
-    <div class="container mt-5">
+{% block content %}
         <table class="table table-striped table-hover">
             <thead>
-                <th>ID</th>
+                {% comment %} <th>ID</th> {% endcomment %}
                 <th>Nombre</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
@@ -49,7 +22,7 @@
             <tbody>
             {% for cliente in listaClientes %}
                 <tr>
-                    <th>{{cliente.id}}</th>
+                    {% comment %} <th>{{cliente.id}}</th> {% endcomment %}
                     <th>{{cliente.nombre}} {{cliente.apellido}}</th>
                     <th>{{cliente.direccion}}</th>
                     <th>{{cliente.telefono}}</th>
@@ -57,40 +30,14 @@
                     <th><a href="{% url 'cliente:detalleCliente' cliente.id %}"><img src="{% static 'img/detalle.png' %}" width="35" height="35"></a></th>
                     <th><a href="{% url 'cliente:actualizarCliente' cliente.id %}"><img src="{% static 'img/editar.png' %}" width="34" height="34"></a></th>
                     <th><a href="{% url 'cliente:eliminarCliente' cliente.id %}"><img src="{% static 'img/eliminar.png' %}" width="34" height="34"></a></th>
-                    {% comment %} <th><button onclick="abrirModalEliminar'{% url 'cliente:eliminarCliente' cliente.id %}' "></button></th> {% endcomment %}
+                    
                 </tr>            
             </tbody>
             {% endfor %}
         </table>
-    </div>
-
-    <!-- Modal -->
-    {% comment %} <div class="modal-dialog modal-dialog-centered" id="modalEliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-            </div>
-        </div>
-    </div> {% endcomment %}
+    </div>    
     
     <div class="container-sm mt-5">
         <a href="{% url 'webfarmacia:indexFarmacia' %}"><img src="{% static 'img/regreso.png' %}" width="40" height="40"></a>
     </div>
-</body>
-</html>
-
-{% comment %} <script type="text/javascript">
-    function abrirModalEliminar(){
-        $('#modalEliminar').modal('show');
-    });
-</script> {% endcomment %}
+{% endblock content %}

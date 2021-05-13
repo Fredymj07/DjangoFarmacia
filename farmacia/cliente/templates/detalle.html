@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %} 
-    {% load bootstrap %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{% static 'img/farmacia.png' %}" type="image/x-icon" />    
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}"/>
-    <title>LorFre Farmacia</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand">
-            <img src="{% static 'img/customer.png' %}" alt="" width="50" height="50">
-            <strong>Detalle Cliente</strong>
-        </a>        
-    </nav>
-
-    <div class="container mt-5">
+{% extends 'partials_cliente/base_cliente.html' %}
+{% load bootstrap %}
+    
+{% block content %}    
         <div class="card text-center">
             <div class="card-header">
                 <h3><b>Información Registrada</b> </h3>
@@ -35,6 +18,4 @@
                 <a href="{% url 'cliente:listaCliente' %}" class="btn btn-outline-info">Regresar</a>
             </div>
         </div>
-    </div>
-</body>
-</html>
+{% endblock content %}
