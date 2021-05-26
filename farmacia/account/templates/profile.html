@@ -4,52 +4,56 @@
 
 {% block content %}
 
-    <div class="card">
-        <div class="card-header">
-            <a href=""><img class="float-right" src="{% static 'img/editar.png' %}" width="34" height="34"></a>
-            Perfil de Usuario
-        </div>
-        <div class="card-body">
-
-            <div class="row mt-4">
-                <div class="col-md-4 offset-md-4">
-                    {% if user.userprofile.avatar %}
-                        <img id="imageUserAvatar" class="rounded img-fluid" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}">                        
-                    {% else %}
-                        <img id="imageUserAvatar" class="rounded img-fluid" src="{% static 'img/logo-profile.jpg' %}">
-                    {% endif %}
-                </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <a href="{% url 'account:edit_user_profile' %}"><img class="float-right" src="{% static 'img/editar.png' %}" width="34" height="34"></a>
+                Perfil de Usuario
             </div>
-                        
-            <div class="">
-                <form method="post" enctype="multipart/form-data" id="formUserAvatar">                
-                    <div class="custom-file mt-5">
-                            {{ formUserProfile.avatar }}    
-                            {% csrf_token %}
-                        <label class="custom-file-label" for="customFile">Seleccionar archivo</label>
+            <div class="card-body">
+
+                <div class="row mt-4">
+                    <div class="col-md-4 offset-md-4">
+                        {% if user.userprofile.avatar %}
+                            <img id="imageUserAvatar" class="rounded img-fluid" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}">                        
+                        {% else %}
+                            <img id="imageUserAvatar" class="rounded img-fluid" src="{% static 'img/logo-profile.jpg' %}">
+                        {% endif %}
                     </div>
-                    {{ formUserProfile.user }}                        
-                </form>
-            </div>
+                </div>
+                            
+                <div class="">
+                    <form method="post" enctype="multipart/form-data" id="formUserAvatar">                
+                        <div class="custom-file mt-5">
+                                {{ formUserProfile.avatar }}    
+                                {% csrf_token %}
+                            <label class="custom-file-label" for="customFile">Seleccionar archivo</label>
+                        </div>
+                        {{ formUserProfile.user }}                        
+                    </form>
+                </div>
 
-            <table class="table table-borderless">
-                <tbody>
-                    <tr>
-                        <th>Nombre:</th>
-                        <td>{{ user.first_name }} {{ user.last_name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Email:</th>
-                        <td>{{ user.email }}</td>
-                    </tr>
-                    <tr>
-                        <th>Usuario autenticado:</th>
-                        <td>{{ user.is_authenticated }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td>{{ user.first_name }} {{ user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Usuario autenticado:</th>
+                            <td>{{ user.is_authenticated }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+    </div>    
+
+    <a href="{% url 'webfarmacia:indexFarmacia' %}"><img src="{% static 'img/regreso.png' %}" width="40" height="40"></a>    
 
 <script>
     /* El siguiente código permite obtener el nombre del archivo que está cargando el usuario desde la aplicación */

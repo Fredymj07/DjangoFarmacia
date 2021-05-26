@@ -1,0 +1,20 @@
+{% extends 'partials_proveedor/base_proveedor.html' %}
+{% load bootstrap %}
+    
+{% block content %}    
+        <div class="card text-center">
+            <div class="card-header">
+                <h3><b>Información Registrada</b> </h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><b>Nombre: </b>{{detalleproveedor.nombre}}
+                <p class="card-text"><b>Dirección: </b>{{detalleproveedor.direccion}}</p>
+                <p class="card-text"><b>Ciudad de residencia: </b>{{detalleproveedor.ciudad}}</p>
+                <p class="card-text"><b>Tipo de documento: </b>{{detalleproveedor.tipo_documento}}</p>
+                <p class="card-text"><b>Número de documento: </b>{{detalleproveedor.numero_documento}}</p>
+                <p class="card-text"><b>Teléfono: </b>{{detalleproveedor.telefono}}</p>
+                <p class="card-text"><b>Email: </b>{{detalleproveedor.email}}</p>
+                <a href="{% url 'proveedor:listarproveedores' %}" class="btn btn-outline-primary">Regresar</a>
+            </div>
+        </div>
+{% endblock content %}

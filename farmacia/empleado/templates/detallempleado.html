@@ -1,0 +1,21 @@
+{% extends 'partials_empleado/base_empleado.html' %}
+{% load bootstrap %}
+    
+{% block content %}    
+        <div class="card text-center">
+            <div class="card-header">
+                <h3><b>Información Registrada</b> </h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><b>Nombre: </b>{{detallempleado.nombre}} {{detallempleado.apellido}}</p>                
+                <p class="card-text"><b>Dirección: </b>{{detallempleado.direccion}}</p>
+                <p class="card-text"><b>Sexo: </b>{{detallempleado.sexo}}</p>
+                <p class="card-text"><b>Ciudad de residencia: </b>{{detallempleado.ciudad}}</p>
+                <p class="card-text"><b>Tipo de documento: </b>{{detallempleado.tipo_documento}}</p>
+                <p class="card-text"><b>Número de documento: </b>{{detallempleado.numero_documento}}</p>
+                <p class="card-text"><b>Teléfono: </b>{{detallempleado.telefono}}</p>
+                <p class="card-text"><b>Email: </b>{{detallempleado.email}}</p>
+                <a href="{% url 'empleado:listarempleados' %}" class="btn btn-outline-primary">Regresar</a>
+            </div>
+        </div>
+{% endblock content %}

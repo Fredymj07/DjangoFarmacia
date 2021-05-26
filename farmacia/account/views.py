@@ -1,13 +1,16 @@
 import os
+from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.conf import settings
 from django.contrib.auth import logout
-from django.shortcuts import redirect, render, reverse
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as make_login
-from django.core.exceptions import ObjectDoesNotExist
-from .forms import CustomerUserCreationForm, UserProfileForm
-from .models import UserProfile
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from .forms import CustomUserCreationForm, UserProfileForm, EditUserProfileForm
+from .models import UserProfile
+
 
 # Create your views here.
 """ Este método permite cerrar la sesión del usuario una vez ha hecho login """
@@ -15,7 +18,7 @@ def logout_view(request):
     logout(request)
     return redirect('wefarmacia:index')
 
-""" Este método permite cargar los datos del usuario que se encuentra logueado en la aplicación """
+""" Este método permite cargar los datos del usuario y actualizar el avatar del perfil """
 @login_required
 def profile(request):
     formUserProfile = UserProfileForm()    
@@ -41,9 +44,9 @@ def profile(request):
 
 """ Este método permite crear un nuevo usuario dentro de la aplicación """
 def user_register(request):
-    userRegistrationForm = CustomerUserCreationForm()
+    userRegistrationForm = CustomUserCreationForm()
     if request.method == 'POST':
-        userRegistrationForm = CustomerUserCreationForm(request.POST)
+        userRegistrationForm = CustomUserCreationForm(request.POST)
         if userRegistrationForm.is_valid():
             user = userRegistrationForm.save()
             if user is not None:
@@ -51,5 +54,16 @@ def user_register(request):
                 messages.add_message(request, messages.SUCCESS, 'Datos del cliente almacenados.')
                 return redirect(reverse('webfarmacia:indexFarmacia'))            
     else:
-        userRegistrationForm = CustomerUserCreationForm()
+        userRegistrationForm = CustomUserCreationForm()
     return render(request, 'user_register.html', {'userRegistrationForm':userRegistrationForm})
+
+""" Este método permite editar los datos de un usuario registrado en la aplicación """
+def edit_user_profile(request):
+    if request.method == "POST":
+        formEditUserProfile = EditUserProfileForm(request.POST, instance=request.user)
+        if formEditUserProfile.is_valid():
+            formEditUserProfile.save()
+    else:
+        formEditUserProfile = EditUserProfileForm(instance=request.user)        
+        
+    return render(request, 'profile.html', {'formEditUserProfile':formEditUserProfile})

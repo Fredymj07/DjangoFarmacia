@@ -1,0 +1,28 @@
+{% comment %} {% extends "base_principal.html" %}
+{% load bootstrap %}
+{% load static %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <a href=""><img class="float-right" src="{% static 'img/editar.png' %}" width="34" height="34"></a>
+            Editar Perfil de Usuario
+        </div>
+        <div class="card-body">
+                        
+            <div class="">
+                <form class="login100-form validate-form mt-4" method="POST" action="{% url 'account:edit_user_profile' %}">
+                    {{ formEditUserProfile|bootstrap }}
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-success mt-3">Enviar</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </div>            
+        </div>
+    </div>
+
+{% endblock %} {% endcomment %}
+
+hola

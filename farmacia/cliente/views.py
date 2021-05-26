@@ -38,11 +38,13 @@ def agregar(request):
     return render(request, 'agregar.html', {'formCliente': formCliente})
 
 """ Este método permite obtener el detalle del cliente seleccionado """
+@login_required
 def detalle(request, id):
     detallecliente = get_object_or_404(Cliente, pk=id)
     return render(request, 'detalle.html', {'detallecliente':detallecliente})
 
-""" Este método permite agregar nuevos Clientes """
+""" Este método permite actualizar un cliente seleccionado """
+@login_required
 def actualizar(request, id):
     detallecliente = get_object_or_404(Cliente, pk=id)
     if request.method=='POST':
@@ -53,11 +55,12 @@ def actualizar(request, id):
             messages.add_message(request, messages.SUCCESS, 'Datos del cliente almacenados.')
             return redirect('cliente:listaCliente')
     else:
-        formCliente =ActualizarClienteForm(instance=detallecliente)
+        formCliente = ActualizarClienteForm(instance=detallecliente)
             
-    return render(request, 'actualizar.html', {'formCliente': formCliente, 'detallecliente':detallecliente})
+    return render(request, 'actualizar.html', {'formCliente':formCliente, 'detallecliente':detallecliente})
 
-""" Este método permite agregar nuevos Clientes """
+""" Este método permite eliminar un cliente seleccionado """
+@login_required
 def eliminar(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     

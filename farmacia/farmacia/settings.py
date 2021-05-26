@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'bootstrapform', # Este componente permite utilizar Bootstrap en los formularios que se utilicen dentro de la aplicación.    
     'webfarmacia',
     'cliente',
+    'empleado',
+    'proveedor',
 ]
 
 MIDDLEWARE = [

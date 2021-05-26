@@ -33,6 +33,12 @@ urlpatterns = [
     
     # Cliente
     path('cliente/', include('cliente.urls')),
+    
+    # Empleado
+    path('empleado/', include('empleado.urls')),
+    
+    # Proveedor
+    path('proveedor/', include('proveedor.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,14 +1,16 @@
 from django.contrib.auth.models import User
 from .models import UserProfile
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 from django import forms
+from django.forms import widgets
 
 # Esta clase corresponde al formulario personalizado para la creación de un usuario
-class CustomerUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(label='Nombres', min_length=3, max_length=50, error_messages={'Invalid':'El nombre ingresado es incorrecto.'})
-    last_name = forms.CharField(label='Apellidos', min_length=4, max_length=70, error_messages={'Invalid':'El nombre ingresado es incorrecto.'})
+""" Esta clase permite agregar campos al formulario de creación de usuarios """
+class CustomUserCreationForm(UserCreationForm):
+    first_name = forms.CharField(label='Nombres', min_length=3, max_length=50, error_messages={'Invalid':'El nombre ingresado no cumple con los parámetros necesarios.'})
+    last_name = forms.CharField(label='Apellidos', min_length=4, max_length=70, error_messages={'Invalid':'El apellido no cumple con los parámetros necesarios.'})
     email = forms.EmailField(label='Email', max_length=50, help_text='Ingresa tu correo electrónico', error_messages={'Invalid':'La dirección de correo ingresada no es válida.'})
     
     """ Este método permite validar si un email ingresado ya se encuentra registrado en la base de datos """
@@ -38,6 +40,7 @@ class CustomerUserCreationForm(UserCreationForm):
         )
         return user_data
     
+""" Esta clase permite agregar el avatar a un usuario """
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -79,3 +82,9 @@ class UserProfileForm(forms.ModelForm):
             raise forms.ValidationError("Imagen no puede superar los 30kb")
         
         return avatar
+    
+""" Esta clase permite editar los valores que se encuentran registrados en el perfil de un usuario """
+class EditUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email',)

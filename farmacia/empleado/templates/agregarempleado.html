@@ -1,0 +1,24 @@
+{% extends 'partials_empleado/base_empleado.html' %}
+{% load static %}
+{% load bootstrap %}
+    
+{% block content %}
+        <div class="card">
+            <div class="card-header">
+                <h4><b>Datos del Empleado</b></h4>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'empleado:agregarempleado' %}" method="post">
+                    {{ formEmpleado|bootstrap }}
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-success mt-3">Enviar</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+
+    <div class="container-sm mt-5">
+        <a href="{% url 'empleado:listarempleados' %}"><img src="{% static 'img/regreso.png' %}" width="30" height="30"></a>
+    </div>
+  {% endblock content %}
