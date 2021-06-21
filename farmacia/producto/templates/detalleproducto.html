@@ -1,0 +1,25 @@
+{% extends 'partials_producto/base_producto.html' %}
+{% load bootstrap %}
+    
+{% block content %}    
+        <div class="card text-center">
+            <div class="card-header">
+                <h3><b>Información Registrada</b> </h3>
+            </div>
+            <div class="card-body">
+                <div class="row mt-4">
+                    <div class="col-md-4 offset-md-4">
+                        <img id="imageUserAvatar" class="rounded img-fluid" src="{{ MEDIA_URL }}{{detalleproducto.imagen}}">
+                    </div>
+                </div>
+                <p class="card-text"><b>Nombre: </b>{{detalleproducto.nombre}}</p>
+                <p class="card-text"><b>Fecha de Compra: </b>{{detalleproducto.fecha_compra}}</p>
+                <p class="card-text"><b>Fecha de Vencimiento: </b>{{detalleproducto.fecha_vencimiento}}</p>                
+                <p class="card-text"><b>Categoría: </b>{{detalleproducto.categoria}}</p>
+                <p class="card-text"><b>Proveedor: </b>{{detalleproducto.proveedor}}</p>
+                <p class="card-text"><b>Stock Disponible: </b>{{detalleproducto.cantidad_disponible}}</p>
+                <p class="card-text"><b>Descripción: </b>{{detalleproducto.descripcion}}</p>                
+                <a href="{% url 'producto:listarproductos' %}" class="btn btn-outline-primary">Regresar</a>
+            </div>
+        </div>
+{% endblock content %}

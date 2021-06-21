@@ -39,11 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "bootstrap4", # Este componente permite utilizar Bootstrap en los formularios que se utilicen dentro de la aplicación.
     'bootstrapform', # Este componente permite utilizar Bootstrap en los formularios que se utilicen dentro de la aplicación.    
+    'bootstrap_datepicker_plus', # Este componente permite utilizar el componente datepicker para la visualización del calendario para las fechas
     'webfarmacia',
     'cliente',
     'empleado',
     'proveedor',
+    'producto',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +135,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
 
 # Configuración para la URL donde será direccionado el usuario luego de hacer Login en la aplicación
@@ -143,7 +145,7 @@ LOGIN_REDIRECT_URL = '/webfarmacia/'
 LOGOUT_REDIRECT_URL = '/webfarmacia/'
 
 # Configuración para el envío de correos. Recuperación de contraseña
-# La pplataforma de envío de correos utilizada es Mailtrap y las credenciales de acceso a dcicha plataforma son las siguientes:
+# La plataforma de envío de correos utilizada es Mailtrap y las credenciales de acceso a dcicha plataforma son las siguientes:
 # Usuario: fredy.montanaa@cun.edu.co
 # Contraseña: FredY2709**
 EMAIL_HOST = 'smtp.mailtrap.io'
@@ -154,3 +156,7 @@ EMAIL_PORT = '2525'
 # Configuración de la URL relativa para guardar los archivos cargados desde la aplicación
 MEDIA_ROOT = os.path.join(BASE_DIR, 'user')
 MEDIA_URL = '/user/'
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}

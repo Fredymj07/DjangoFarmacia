@@ -1,0 +1,27 @@
+{% extends 'partials_producto/base_producto.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+{% block content %}    
+        <div class="card">
+            <div class="card-header">
+                <h4><b>Datos del Producto</b></h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% bootstrap_form formProducto %}
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-success mt-3">Enviar</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+
+    <div class="container-sm mt-5">
+        <a href="{% url 'producto:listarproductos' %}"><img src="{% static 'img/regreso.png' %}" width="30" height="30"></a>
+    </div>
+  {% endblock content %}

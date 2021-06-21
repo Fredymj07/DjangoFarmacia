@@ -1,5 +1,5 @@
 import os
-from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.shortcuts import redirect, render, reverse
 from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserChangeForm
@@ -16,7 +16,7 @@ from .models import UserProfile
 """ Este método permite cerrar la sesión del usuario una vez ha hecho login """
 def logout_view(request):
     logout(request)
-    return redirect('wefarmacia:index')
+    return redirect('webfarmacia:index')
 
 """ Este método permite cargar los datos del usuario y actualizar el avatar del perfil """
 @login_required

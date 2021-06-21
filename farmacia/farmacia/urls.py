@@ -39,6 +39,9 @@ urlpatterns = [
     
     # Proveedor
     path('proveedor/', include('proveedor.urls')),
+    
+    # Producto
+    path('producto/', include('producto.urls')),
 ]
 
 if settings.DEBUG:

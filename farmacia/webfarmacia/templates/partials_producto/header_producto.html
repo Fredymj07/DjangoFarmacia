@@ -1,0 +1,18 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'producto:listarproductos' %}">
+      <img src="{% static 'img/producto.png' %}" alt="" width="50" height="50"/>
+      <strong>Listado de Productos</strong>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item ml-5">
+          <a class="nav-link active" aria-current="page" href="{% url 'producto:agregarproducto' %}">Agregar Producto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

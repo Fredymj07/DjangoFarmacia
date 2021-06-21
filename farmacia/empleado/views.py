@@ -59,7 +59,7 @@ def ActualizarEmpleado(request, id):
             
     return render(request, 'actualizarempleado.html', {'formEmpleado':formEmpleado, 'detallempleado':detallempleado})
 
-""" Este método permite eliminar un cliente seleccionado """
+""" Este método permite eliminar un empleado seleccionado """
 @login_required
 def EliminarEmpleado(request, id):
     empleado = get_object_or_404(Empleado, pk=id)
